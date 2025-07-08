@@ -100,10 +100,10 @@ function App() {
     happiness: 50,
     economy: 50,
     energy: 50,
-    temperature: 50,
-    life_spaces: 50,
-    sea_level: 50,
-    co2: 50,
+    temperature: 15,
+    life_spaces: 15,
+    sea_level: 15,
+    co2: 15,
     currentCardIndex: 0,
     gameOver: false,
     gameOverReason: '',
@@ -115,8 +115,8 @@ function App() {
   const [dragDirection, setDragDirection] = useState(null);
 
   const calculatePreview = (direction) => {
-    const currentCard = gameData.cards[gameState.currentCardIndex];
-    const consequences = direction === 'left' ? currentCard.yes.ressources : currentCard.no.ressources;
+    const currentCard = gameData[gameState.currentCardIndex];
+    const consequences = direction === 'left' ? currentCard.choices.left.resources : currentCard.choices.right.resources;
     const preview = {};
     
     Object.keys(consequences).forEach(key => {
@@ -134,8 +134,8 @@ function App() {
   };
 
   const handleChoice = (choice) => {
-    const currentCard = gameData.cards[gameState.currentCardIndex];
-    const consequences = choice === 'left' ? currentCard.yes.ressources : currentCard.no.ressources;
+    const currentCard = gameData[gameState.currentCardIndex];
+    const consequences = choice === 'left' ? currentCard.choices.left.resources : currentCard.choices.right.resources;
     
     const newState = { ...gameState };
     
@@ -147,39 +147,40 @@ function App() {
     });
     
     // Calculer l'impact sur la population et les espèces
-    const criticalStats = ['happiness', 'economy', 'energy', 'temperature', 'life_spaces', 'sea_level', 'co2'];
-    const lowStats = criticalStats.filter(stat => newState[stat] <= 20);
-    const highStats = criticalStats.filter(stat => newState[stat] >= 80);
+    const backgroundStatsForImpact = ['temperature', 'life_spaces', 'sea_level', 'co2'];
+    const highBackgroundStats = backgroundStatsForImpact.filter(stat => newState[stat] >= 80);
+    const lowBackgroundStats = backgroundStatsForImpact.filter(stat => newState[stat] <= 20);
     
     // Impact sur la population
-    if (lowStats.length > 0) {
-      newState.population = Math.max(0, newState.population - lowStats.length * 5);
-    } else if (highStats.length >= 4) {
+    if (highBackgroundStats.length > 0) {
+      newState.population = Math.max(0, newState.population - highBackgroundStats.length * 10);
+    } else if (lowBackgroundStats.length >= 3) {
       newState.population = Math.min(100, newState.population + 2);
     }
     
     // Impact sur les espèces
-    if (newState.life_spaces <= 20) {
+    if (newState.life_spaces >= 80) {
       newState.lost_species = Math.min(100, newState.lost_species + 10);
-    } else if (newState.life_spaces >= 80) {
+    } else if (newState.life_spaces <= 20) {
       newState.lost_species = Math.max(0, newState.lost_species - 2);
     }
     
     // Vérifier les conditions de fin de jeu
-    const hasCriticalFailure = criticalStats.some(stat => newState[stat] <= 0);
+    const backgroundStats = ['temperature', 'life_spaces', 'sea_level', 'co2'];
+    const hasCriticalFailure = backgroundStats.some(stat => newState[stat] >= 100);
     const hasPopulationExtinction = newState.population <= 0;
     const hasAllSpeciesExtinct = newState.lost_species >= 100;
     
     if (hasCriticalFailure) {
       newState.gameOver = true;
-      newState.gameOverReason = 'Une ou plusieurs ressources critiques ont atteint zéro !';
+      newState.gameOverReason = 'Une des ressources critiques a atteint son maximum ! L\'humanité est décimée !';
     } else if (hasPopulationExtinction) {
       newState.gameOver = true;
       newState.gameOverReason = 'L\'humanité a disparu !';
     } else if (hasAllSpeciesExtinct) {
       newState.gameOver = true;
       newState.gameOverReason = 'Toutes les espèces animales ont disparu !';
-    } else if (newState.currentCardIndex >= gameData.cards.length - 1) {
+    } else if (newState.currentCardIndex >= gameData.length - 1) {
       newState.gameOver = true;
       newState.gameOverReason = 'Vous avez terminé toutes les décisions !';
     } else {
@@ -206,10 +207,10 @@ function App() {
       happiness: 50,
       economy: 50,
       energy: 50,
-      temperature: 50,
-      life_spaces: 50,
-      sea_level: 50,
-      co2: 50,
+      temperature: 15,
+      life_spaces: 15,
+      sea_level: 15,
+      co2: 15,
       currentCardIndex: 0,
       gameOver: false,
       gameOverReason: '',
@@ -238,7 +239,7 @@ function App() {
   if (gameState.gameOver) {
     return (
       <GameContainer>
-        <BackgroundScene gameState={gameState} />
+        <BackgroundScene gameState={gameState} previewStats={previewStats} />
         <GameOverScreen
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -267,7 +268,7 @@ function App() {
 
   return (
     <GameContainer>
-      <BackgroundScene gameState={gameState} />
+      <BackgroundScene gameState={gameState} previewStats={previewStats} />
       <QuickStats 
         gameState={gameState}
         previewStats={previewStats}
@@ -278,7 +279,7 @@ function App() {
         <AnimatePresence mode="wait">
           <GameCard
             key={gameState.currentCardIndex}
-            card={gameData.cards[gameState.currentCardIndex]}
+            card={gameData[gameState.currentCardIndex]}
             onChoice={handleChoice}
             gameState={gameState}
           />

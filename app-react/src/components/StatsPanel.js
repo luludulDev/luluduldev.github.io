@@ -91,34 +91,7 @@ const ProgressFill = styled(motion.div)`
   }
 `;
 
-const PreviewOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 0.7rem;
-  font-weight: bold;
-  z-index: 10;
-  
-  &.positive {
-    background: rgba(76, 175, 80, 0.8);
-  }
-  
-  &.negative {
-    background: rgba(255, 107, 107, 0.8);
-  }
-  
-  &.neutral {
-    background: rgba(128, 128, 128, 0.8);
-  }
-`;
+
 
 const getStatIcon = (statName) => {
   const icons = {
@@ -145,6 +118,8 @@ const getStatLabel = (statName) => {
   };
   return labels[statName] || statName;
 };
+
+
 
 const StatsPanel = ({ gameState, previewStats, dragDirection }) => {
   const stats = [
@@ -177,7 +152,6 @@ const StatsPanel = ({ gameState, previewStats, dragDirection }) => {
         const preview = getPreviewValue(stat);
         const currentValue = gameState[stat];
         const newValue = preview ? preview.new : currentValue;
-        const change = preview ? preview.change : 0;
         
         return (
           <StatItem key={stat}>
@@ -187,7 +161,7 @@ const StatsPanel = ({ gameState, previewStats, dragDirection }) => {
                 {getStatLabel(stat)}
               </StatName>
               <StatValue>
-                {preview ? `${currentValue}% → ${newValue}%` : `${Math.round(currentValue)}%`}
+                {Math.round(currentValue)}%
               </StatValue>
             </StatLabel>
             
@@ -198,13 +172,6 @@ const StatsPanel = ({ gameState, previewStats, dragDirection }) => {
                 animate={{ width: `${newValue}%` }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
               />
-              {preview && (
-                <PreviewOverlay 
-                  className={change > 0 ? 'positive' : change < 0 ? 'negative' : 'neutral'}
-                >
-                  {change > 0 ? '+' : ''}{change}
-                </PreviewOverlay>
-              )}
             </ProgressBar>
           </StatItem>
         );

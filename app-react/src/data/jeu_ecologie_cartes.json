@@ -1,862 +1,465 @@
-{
-  "score": {
-    "population": 0,
-    "lost_species": 0
-  },
-  "ressources": {
-    "happiness": 0,
-    "economy": 0,
-    "energy": 0,
-    "temperature": 0,
-    "life_spaces": 0,
-    "sea_level": 0,
-    "co2": 0
-  },
-  "actors": [
-    "Ministre de l'Industrie",
-    "Ministre de l'Environnement",
-    "Porte parole du Peuple"
-  ],
-  "cards": [
-    {
-      "actor": 0,
-      "text": "Ministre de l'économie propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 7,
-          "energy": 9,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
+[
+  {
+    "id": 1,
+    "title": "La dernière mangrove",
+    "description": "Un groupe pétrolier propose d’exploiter un gisement situé sous l’une des dernières mangroves du pays.",
+    "choices": {
+      "left": {
+        "text": "Autoriser le forage avec compensation écologique",
+        "resources": {
+          "life_spaces": -20,
+          "energy": 25,
+          "economy": 10,
+          "co2": 45,
+          "sea_level": 30
         }
       },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Ministre de l’industrie propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": -5,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Porte-parole du peuple propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 9,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": -14,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": -6,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Lobbyiste du secteur pétrolier propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 22,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 15,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": -12,
-          "life_spaces": -6,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Conseiller en communication propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": -9,
-          "temperature": 0,
-          "life_spaces": -13,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Lobbyiste du secteur pétrolier propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 10,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": -14,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": -12,
-          "sea_level": -9,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Ministre de l’environnement propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 13,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": -9,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": -6,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Porte-parole du peuple propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 21,
-          "economy": 0,
-          "energy": 24,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": -10,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": -13,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Lobbyiste du secteur pétrolier propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 23,
-          "temperature": 5,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": -7,
-          "energy": 0,
-          "temperature": -12,
-          "life_spaces": -9,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Porte-parole du peuple propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 6,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": -12,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Conseiller scientifique propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 14,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": -13,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Conseiller en communication propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 17,
-          "economy": 13,
-          "energy": 0,
-          "temperature": 17,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": -6,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Conseiller en communication propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 18,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": -13,
-          "economy": 0,
-          "energy": 0,
-          "temperature": -10,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Représentant des ong propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 17,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 18,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": -6,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Représentant des ong propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 6,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": -7,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Ministre de l'économie propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Conseiller en communication propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 6,
-          "energy": 21,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": -15,
-          "economy": 0,
-          "energy": -14,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Ministre de l’environnement propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 8,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 12,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": -13,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": -8,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Ministre de l'agriculture propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 10,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": -6,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Conseiller scientifique propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 9,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Lobbyiste du secteur pétrolier propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 15,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 17,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": -15,
-          "economy": -14,
-          "energy": -12,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Conseiller en communication propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 8,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": -10,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Ministre de la santé propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 24,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": -11,
-          "temperature": -14,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Ministre de l’environnement propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 13,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Ministre de l'agriculture propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 12,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 15,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Ministre de l'agriculture propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 21,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": -8,
-          "economy": -11,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": -6,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Porte-parole du peuple propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 8,
-          "energy": 11,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": -11,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Conseiller en communication propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 12,
-          "temperature": 0,
-          "life_spaces": 15,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": -9,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": -10,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Lobbyiste du secteur pétrolier propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 24,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": 0,
-          "economy": -11,
-          "energy": -5,
-          "temperature": 0,
-          "life_spaces": 0,
-          "sea_level": 0,
-          "co2": 0
-        }
-      }
-    },
-    {
-      "actor": 0,
-      "text": "Ministre de l'agriculture propose une décision.",
-      "yes": {
-        "text": "Oui",
-        "ressources": {
-          "happiness": 0,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": 9,
-          "sea_level": 0,
-          "co2": 0
-        }
-      },
-      "no": {
-        "text": "Non",
-        "ressources": {
-          "happiness": -7,
-          "economy": 0,
-          "energy": 0,
-          "temperature": 0,
-          "life_spaces": -7,
-          "sea_level": 0,
-          "co2": 0
+      "right": {
+        "text": "Interdire tout projet sur cette zone protégée",
+        "resources": {
+          "life_spaces": 10,
+          "economy": -5
         }
       }
     }
-  ]
-}
+  },
+  {
+    "id": 2,
+    "title": "Les villes s’étendent",
+    "description": "Face à la croissance urbaine, vos ministres proposent de grignoter des terres agricoles et des forêts pour créer des logements.",
+    "choices": {
+      "left": {
+        "text": "Accepter pour répondre à la demande",
+        "resources": {
+          "life_spaces": -15,
+          "happiness": 10,
+          "economy": 5,
+          "energy": 10
+        }
+      },
+      "right": {
+        "text": "Imposer une densification urbaine stricte",
+        "resources": {
+          "happiness": -5,
+          "life_spaces": 10
+        }
+      }
+    }
+  },
+  {
+    "id": 3,
+    "title": "Le barrage",
+    "description": "Un projet de barrage géant est en cours. Il permettrait d'assurer une énergie propre mais inonderait plusieurs vallées abritant des espèces rares.",
+    "choices": {
+      "left": {
+        "text": "Valider le projet énergétique",
+        "resources": {
+          "life_spaces": -20,
+          "economy": 15,
+          "temperature": -5,
+          "co2": 30,
+          "sea_level": 20
+        }
+      },
+      "right": {
+        "text": "Annuler pour protéger l’écosystème",
+        "resources": {
+          "economy": -10,
+          "life_spaces": 15
+        }
+      }
+    }
+  },
+  {
+    "id": 4,
+    "title": "Les abeilles disparaissent",
+    "description": "Les scientifiques vous alertent sur l’effondrement des colonies d’abeilles. Ils demandent l’interdiction d’un pesticide très utilisé.",
+    "choices": {
+      "left": {
+        "text": "Interdire le pesticide immédiatement",
+        "resources": {
+          "economy": -5,
+          "energy": -10,
+          "life_spaces": 5,
+          "co2": -30,
+          "sea_level": -20
+        }
+      },
+      "right": {
+        "text": "Laisser les agriculteurs s’adapter d'abord",
+        "resources": {
+          "economy": 5,
+          "co2": 15,
+          "sea_level": 10
+        }
+      }
+    }
+  },
+  {
+    "id": 5,
+    "title": "Refuge côtier",
+    "description": "Une plage est devenue un refuge crucial pour les tortues marines. Le maire souhaite y construire un complexe hôtelier.",
+    "choices": {
+      "left": {
+        "text": "Accepter le projet avec zones réservées",
+        "resources": {
+          "life_spaces": -10,
+          "economy": 15,
+          "happiness": 5,
+          "co2": 30,
+          "sea_level": 20
+        }
+      },
+      "right": {
+        "text": "Classer toute la zone en réserve naturelle",
+        "resources": {
+          "life_spaces": 15,
+          "economy": -10
+        }
+      }
+    }
+  },
+  {
+    "id": 6,
+    "title": "Déforestation illégale",
+    "description": "Des associations dénoncent l’inaction face à la déforestation illégale dans un parc naturel.",
+    "choices": {
+      "left": {
+        "text": "Lancer une vaste opération de surveillance",
+        "resources": {
+          "life_spaces": 10,
+          "economy": -5
+        }
+      },
+      "right": {
+        "text": "Ne pas intervenir pour ne pas froisser les exploitants",
+        "resources": {
+          "life_spaces": -15,
+          "economy": 5,
+          "co2": 30,
+          "sea_level": 20
+        }
+      }
+    }
+  },
+  {
+    "id": 7,
+    "title": "Nouveaux emplois, nouvelles routes",
+    "description": "Une zone sauvage montagneuse est ciblée pour développer une station de ski moderne.",
+    "choices": {
+      "left": {
+        "text": "Autoriser la construction",
+        "resources": {
+          "energy": 15,
+          "life_spaces": -15,
+          "happiness": 10,
+          "co2": 15,
+          "sea_level": 10
+        }
+      },
+      "right": {
+        "text": "Préserver la montagne vierge",
+        "resources": {
+          "life_spaces": 15,
+          "economy": -5
+        }
+      }
+    }
+  },
+  {
+    "id": 8,
+    "title": "Voix autochtones",
+    "description": "Une communauté autochtone vous demande de bloquer un projet minier menaçant sa forêt ancestrale.",
+    "choices": {
+      "left": {
+        "text": "Respecter leur territoire",
+        "resources": {
+          "life_spaces": 15,
+          "economy": -10
+        }
+      },
+      "right": {
+        "text": "Prioriser le développement minier",
+        "resources": {
+          "energy": 20,
+          "life_spaces": -20,
+          "co2": 30,
+          "sea_level": 20
+        }
+      }
+    }
+  },
+  {
+    "id": 9,
+    "title": "Forêts urbaines",
+    "description": "Des urbanistes vous proposent de créer des “forêts verticales” dans les villes.",
+    "choices": {
+      "left": {
+        "text": "Lancer un grand plan de végétalisation urbaine",
+        "resources": {
+          "life_spaces": 10,
+          "happiness": 10,
+          "economy": -5
+        }
+      },
+      "right": {
+        "text": "Investir ailleurs, plus rentable",
+        "resources": {
+          "economy": 5,
+          "life_spaces": -5
+        }
+      }
+    }
+  },
+  {
+    "id": 10,
+    "title": "Éducation écologique",
+    "description": "Le ministère de l’Éducation propose d’ajouter des modules sur la biodiversité dans toutes les écoles.",
+    "choices": {
+      "left": {
+        "text": "Accepter et financer ce programme",
+        "resources": {
+          "economy": -5,
+          "co2": -15,
+          "sea_level": -10
+        }
+      },
+      "right": {
+        "text": "Trop coûteux pour peu de résultats",
+        "resources": {
+          "economy": 5
+        }
+      }
+    }
+  },
+  {
+    "id": 11,
+    "title": "Zones mortes marines",
+    "description": "Des scientifiques signalent l’apparition de zones mortes dans les océans à cause des rejets agricoles.",
+    "choices": {
+      "left": {
+        "text": "Imposer des quotas d’engrais stricts",
+        "resources": {
+          "energy": -10,
+          "economy": -5,
+          "life_spaces": 5,
+          "co2": -30,
+          "sea_level": -20
+        }
+      },
+      "right": {
+        "text": "Ignorer, les pêcheurs s’adapteront",
+        "resources": {
+          "economy": 5,
+          "co2": 30,
+          "sea_level": 20
+        }
+      }
+    }
+  },
+  {
+    "id": 12,
+    "title": "Corridor écologique",
+    "description": "Une ONG propose de relier deux forêts protégées par un corridor écologique en achetant des terres agricoles.",
+    "choices": {
+      "left": {
+        "text": "Financer le corridor",
+        "resources": {
+          "life_spaces": 20,
+          "economy": -10,
+          "co2": -15,
+          "sea_level": -10
+        }
+      },
+      "right": {
+        "text": "Refuser, trop coûteux",
+        "resources": {
+          "life_spaces": -5,
+          "co2": 15,
+          "sea_level": 10
+        }
+      }
+    }
+  },
+  {
+    "id": 13,
+    "title": "Tempête exceptionnelle",
+    "description": "Une tempête dévaste des zones côtières. Certains vous accusent d’inaction climatique.",
+    "choices": {
+      "left": {
+        "text": "Reconnaître l’urgence climatique et agir",
+        "resources": {
+          "temperature": -5,
+          "economy": -10
+        }
+      },
+      "right": {
+        "text": "Minimiser la situation publiquement",
+        "resources": {
+          "temperature": 5
+        }
+      }
+    }
+  },
+  {
+    "id": 14,
+    "title": "Rachat des terres",
+    "description": "Un groupe financier étranger veut acheter 10 000 hectares de savane.",
+    "choices": {
+      "left": {
+        "text": "Autoriser la vente",
+        "resources": {
+          "economy": 15,
+          "life_spaces": -20,
+          "co2": 30,
+          "sea_level": 20
+        }
+      },
+      "right": {
+        "text": "Refuser et protéger ces terres",
+        "resources": {
+          "life_spaces": 10,
+          "economy": -5
+        }
+      }
+    }
+  },
+  {
+    "id": 15,
+    "title": "Réserve marine",
+    "description": "Des biologistes veulent interdire la pêche dans une zone riche en biodiversité sous-marine.",
+    "choices": {
+      "left": {
+        "text": "Créer la réserve marine",
+        "resources": {
+          "life_spaces": 15,
+          "economy": -5,
+          "co2": -30,
+          "sea_level": -20
+        }
+      },
+      "right": {
+        "text": "Maintenir l’activité économique locale",
+        "resources": {
+          "economy": 5,
+          "co2": 30,
+          "sea_level": 20
+        }
+      }
+    }
+  },
+  {
+    "id": 16,
+    "title": "Plantations energylles",
+    "description": "Une multinationale veut remplacer une forêt tropicale par des plantations de palmiers à huile.",
+    "choices": {
+      "left": {
+        "text": "Accepter le projet",
+        "resources": {
+          "energy": 20,
+          "life_spaces": -30,
+          "co2": 45,
+          "sea_level": 30
+        }
+      },
+      "right": {
+        "text": "Refuser catégoriquement",
+        "resources": {
+          "life_spaces": 15,
+          "economy": -10
+        }
+      }
+    }
+  },
+  {
+    "id": 17,
+    "title": "Tourisme responsable",
+    "description": "Le ministère propose un programme de développement du tourisme durable dans les zones sensibles.",
+    "choices": {
+      "left": {
+        "text": "Financer le projet",
+        "resources": {
+          "life_spaces": 10,
+          "happiness": 5,
+          "economy": -5
+        }
+      },
+      "right": {
+        "text": "Refuser, le tourisme de masse rapporte plus",
+        "resources": {
+          "energy": 10,
+          "life_spaces": -10,
+          "happiness": -5
+        }
+      }
+    }
+  },
+  {
+    "id": 18,
+    "title": "Resources en eau",
+    "description": "Une sécheresse frappe le pays. L’energy veut des dérogations pour continuer à pomper de l’eau.",
+    "choices": {
+      "left": {
+        "text": "Prioriser l’usage humain et écologique",
+        "resources": {
+          "life_spaces": 10,
+          "energy": -10
+        }
+      },
+      "right": {
+        "text": "Laisser l’energy fonctionner normalement",
+        "resources": {
+          "economy": 10,
+          "life_spaces": -15
+        }
+      }
+    }
+  },
+  {
+    "id": 19,
+    "title": "Soutien aux agriculteurs",
+    "description": "Les agriculteurs demandent des aides pour adopter des pratiques plus respectueuses de l’environnement.",
+    "choices": {
+      "left": {
+        "text": "Accorder les subventions",
+        "resources": {
+          "life_spaces": 15,
+          "economy": -10,
+          "co2": -15,
+          "sea_level": -10
+        }
+      },
+      "right": {
+        "text": "Refuser, priorité à la rentabilité",
+        "resources": {
+          "economy": 10,
+          "co2": 15,
+          "sea_level": 10
+        }
+      }
+    }
+  },
+  {
+    "id": 20,
+    "title": "Colonisation de l’Arctique",
+    "description": "Avec la fonte des glaces, plusieurs pays veulent exploiter les resources naturelles de l’Arctique.",
+    "choices": {
+      "left": {
+        "text": "S’allier pour créer une zone protégée internationale",
+        "resources": {
+          "life_spaces": 20,
+          "temperature": -5,
+          "economy": -10
+        }
+      },
+      "right": {
+        "text": "Sauter sur l’occasion pour notre industrie",
+        "resources": {
+          "energy": 15,
+          "life_spaces": -20,
+          "temperature": 5
+        }
+      }
+    }
+  }
+]

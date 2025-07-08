@@ -156,26 +156,26 @@ const GameCard = ({ card, onChoice, gameState }) => {
       whileHover={{ scale: 1.02 }}
     >
       <CardHeader>
-        Décision
-        <ActorName>{getActorName(card.actor)}</ActorName>
+        {card.title || 'Décision'}
+        {card.actor !== undefined && <ActorName>{getActorName(card.actor)}</ActorName>}
       </CardHeader>
       
       <CardContent>
-        <CardText>{card.text}</CardText>
+        <CardText>{card.description}</CardText>
         
         <ChoiceContainer>
           <ChoiceButton 
             className="left"
             onClick={() => onChoice('left')}
           >
-            {card.yes.text}
+            {card.choices.left.text}
           </ChoiceButton>
           
           <ChoiceButton 
             className="right"
             onClick={() => onChoice('right')}
           >
-            {card.no.text}
+            {card.choices.right.text}
           </ChoiceButton>
         </ChoiceContainer>
       </CardContent>

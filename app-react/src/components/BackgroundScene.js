@@ -2,6 +2,35 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
+const ArrowContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ArrowIndicator = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  svg {
+    width: 320px;
+    height: 128px;
+    transform: ${props => props.direction === 'up' ? 'rotate(-90deg)' : 'rotate(90deg)'};
+    filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.9));
+  }
+  polygon {
+    fill: ${props => props.direction === 'up' ? '#FF5722' : '#4CAF50'};
+  }
+`;
+
 const BackgroundContainer = styled.div`
   position: absolute;
   top: 0;
@@ -12,6 +41,7 @@ const BackgroundContainer = styled.div`
   z-index: 0;
   display: flex;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  user-select: none;
 `;
 
 const Column = styled.div`
@@ -22,47 +52,29 @@ const Column = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  background: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
   border-right: 3px solid rgba(255, 255, 255, 0.5);
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
-  
+  user-select: none;
+
   &:last-child {
     border-right: none;
   }
-  
+
   &:first-child {
     border-left: 3px solid rgba(255, 255, 255, 0.5);
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
   }
 `;
 
 const ColumnTitle = styled.div`
   position: absolute;
-  top: 20px;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
   color: white;
   font-weight: bold;
   font-size: 1.2rem;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-  z-index: 10;
+  z-index: 20;
   background: rgba(0, 0, 0, 0.6);
   padding: 8px 15px;
   border-radius: 8px;
@@ -71,114 +83,190 @@ const ColumnTitle = styled.div`
 `;
 
 const ImageContainer = styled(motion.div)`
-  width: 80%;
-  height: 60%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  margin: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 
-    0 4px 15px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  z-index: 1;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 const getLifeSpacesImage = (level) => {
-  if (level > 80) return '🌳🌲🌳';
-  if (level > 60) return '🌳🌲';
-  if (level > 40) return '🌳';
-  if (level > 20) return '🌱';
-  return '🏜️';
+  if (level >= 75) return require('../ressources/lifespace/lifespace4.png');
+  if (level >= 50) return require('../ressources/lifespace/lifespace3.png');
+  if (level >= 25) return require('../ressources/lifespace/lifespace2.png');
+  return require('../ressources/lifespace/lifespace1.png');
 };
 
 const getTemperatureImage = (level) => {
-  if (level > 80) return '🔥🔥🔥';
-  if (level > 60) return '🔥🔥';
-  if (level > 40) return '🔥';
-  if (level > 20) return '🌡️';
-  return '❄️';
+  if (level >= 75) return require('../ressources/temperature/temperature4.png');
+  if (level >= 50) return require('../ressources/temperature/temperature3.png');
+  if (level >= 25) return require('../ressources/temperature/temperature2.png');
+  return require('../ressources/temperature/temperature1.png');
 };
 
 const getSeaLevelImage = (level) => {
-  if (level > 80) return '🌊🌊🌊';
-  if (level > 60) return '🌊🌊';
-  if (level > 40) return '🌊';
-  if (level > 20) return '💧';
-  return '🏔️';
+  if (level >= 75) return require('../ressources/sealevel/sealevel4.png');
+  if (level >= 50) return require('../ressources/sealevel/sealevel3.png');
+  if (level >= 25) return require('../ressources/sealevel/sealevel2.png');
+  return require('../ressources/sealevel/sealevel1.png');
 };
 
 const getCO2Image = (level) => {
-  if (level > 80) return '☁️☁️☁️';
-  if (level > 60) return '☁️☁️';
-  if (level > 40) return '☁️';
-  if (level > 20) return '🌫️';
-  return '☀️';
+  if (level >= 75) return require('../ressources/pollution/pollution4.png');
+  if (level >= 50) return require('../ressources/pollution/pollution3.png');
+  if (level >= 25) return require('../ressources/pollution/pollution2.png');
+  return require('../ressources/pollution/pollution1.png');
 };
 
-const getColumnColor = (level) => {
-  if (level > 80) return 'rgba(255, 0, 0, 0.4)';
-  if (level > 60) return 'rgba(255, 165, 0, 0.4)';
-  if (level > 40) return 'rgba(255, 255, 0, 0.4)';
-  if (level > 20) return 'rgba(0, 255, 0, 0.4)';
-  return 'rgba(0, 0, 255, 0.4)';
+const getArrowSize = (change) => {
+  const absChange = Math.abs(change);
+  if (absChange >= 15) return 'large';
+  if (absChange >= 8) return 'large';
+  return 'large';
 };
 
-const BackgroundScene = ({ gameState }) => {
+const getArrowDirection = (change) => {
+  if (change > 0) return 'up';
+  if (change < 0) return 'down';
+  return null;
+};
+
+const getArrowSymbol = (direction) => {
+  if (direction === 'up' || direction === 'down') {
+    return (
+      <svg width="100" height="40" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,10 70,10 70,0 100,20 70,40 70,30 0,30" fill="#333"></polygon>
+      </svg>
+    );
+  }
+  return null;
+};
+
+const BackgroundScene = ({ gameState, previewStats }) => {
+  const getPreviewValue = (stat) => {
+    if (!previewStats || !previewStats[stat]) return null;
+    return previewStats[stat];
+  };
+
   return (
     <BackgroundContainer>
-      <Column style={{ background: getColumnColor(gameState.life_spaces) }}>
+      <Column>
         <ColumnTitle>Espaces de Vie</ColumnTitle>
         <ImageContainer
           animate={{ 
-            scale: gameState.life_spaces / 100,
-            opacity: gameState.life_spaces > 10 ? 1 : 0.3
+            opacity: 1
           }}
           transition={{ duration: 0.5 }}
         >
-          {getLifeSpacesImage(gameState.life_spaces)}
+          <img src={getLifeSpacesImage(gameState.life_spaces)} alt="Espaces de vie" />
+          {(() => {
+            const preview = getPreviewValue('life_spaces'); // ou temperature, sea_level, co2 selon la colonne
+            if (preview) {
+              const arrowDirection = getArrowDirection(preview.change);
+              if (!arrowDirection) return null;
+              // up = rouge, down = vert, orientation adaptée
+              return (
+                <ArrowContainer>
+                  <ArrowIndicator direction={arrowDirection}>
+                    {getArrowSymbol(arrowDirection)}
+                  </ArrowIndicator>
+                </ArrowContainer>
+              );
+            }
+            return null;
+          })()}
         </ImageContainer>
       </Column>
       
-      <Column style={{ background: getColumnColor(gameState.temperature) }}>
+      <Column>
         <ColumnTitle>Température</ColumnTitle>
         <ImageContainer
           animate={{ 
-            scale: gameState.temperature / 100,
-            opacity: gameState.temperature > 10 ? 1 : 0.3
+            opacity: 1
           }}
           transition={{ duration: 0.5 }}
         >
-          {getTemperatureImage(gameState.temperature)}
+          <img src={getTemperatureImage(gameState.temperature)} alt="Température" />
+          {(() => {
+            const preview = getPreviewValue('temperature');
+            if (preview) {
+              const arrowDirection = getArrowDirection(preview.change);
+              if (!arrowDirection) return null;
+              return (
+                <ArrowContainer>
+                  <ArrowIndicator direction={arrowDirection}>
+                    {getArrowSymbol(arrowDirection)}
+                  </ArrowIndicator>
+                </ArrowContainer>
+              );
+            }
+            return null;
+          })()}
         </ImageContainer>
       </Column>
       
-      <Column style={{ background: getColumnColor(gameState.sea_level) }}>
+      <Column>
         <ColumnTitle>Niveau de la Mer</ColumnTitle>
         <ImageContainer
           animate={{ 
-            scale: gameState.sea_level / 100,
-            opacity: gameState.sea_level > 10 ? 1 : 0.3
+            opacity: 1
           }}
           transition={{ duration: 0.5 }}
         >
-          {getSeaLevelImage(gameState.sea_level)}
+          <img src={getSeaLevelImage(gameState.sea_level)} alt="Niveau de la mer" />
+          {(() => {
+            const preview = getPreviewValue('sea_level');
+            if (preview) {
+              const arrowDirection = getArrowDirection(preview.change);
+              if (!arrowDirection) return null;
+              return (
+                <ArrowContainer>
+                  <ArrowIndicator direction={arrowDirection}>
+                    {getArrowSymbol(arrowDirection)}
+                  </ArrowIndicator>
+                </ArrowContainer>
+              );
+            }
+            return null;
+          })()}
         </ImageContainer>
       </Column>
       
-      <Column style={{ background: getColumnColor(gameState.co2) }}>
+      <Column>
         <ColumnTitle>CO2/Pollution</ColumnTitle>
         <ImageContainer
           animate={{ 
-            scale: gameState.co2 / 100,
-            opacity: gameState.co2 > 10 ? 1 : 0.3
+            opacity: 1
           }}
           transition={{ duration: 0.5 }}
         >
-          {getCO2Image(gameState.co2)}
+          <img src={getCO2Image(gameState.co2)} alt="CO2/Pollution" />
+          {(() => {
+            const preview = getPreviewValue('co2');
+            if (preview) {
+              const arrowDirection = getArrowDirection(preview.change);
+              if (!arrowDirection) return null;
+              return (
+                <ArrowContainer>
+                  <ArrowIndicator direction={arrowDirection}>
+                    {getArrowSymbol(arrowDirection)}
+                  </ArrowIndicator>
+                </ArrowContainer>
+              );
+            }
+            return null;
+          })()}
         </ImageContainer>
       </Column>
     </BackgroundContainer>
