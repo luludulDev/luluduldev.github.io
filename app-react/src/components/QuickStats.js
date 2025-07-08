@@ -3,13 +3,16 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const QuickStatsContainer = styled.div`
-  position: absolute;
-  top: 20px;
+  position: fixed;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 15px;
+  gap: 20px;
   z-index: 100;
+  width: 100%;
+  justify-content: center;
+  padding: 0 20px;
 `;
 
 const StatItem = styled.div`
@@ -51,91 +54,91 @@ const StatValue = styled.span`
 `;
 
 const getStatIcon = (statName) => {
-  const icons = {
-    happiness: '😊',
-    economy: '💰',
-    energy: '⚡'
-  };
-  return icons[statName] || '📊';
+	const icons = {
+		happiness: '😊',
+		economy: '💰',
+		energy: '⚡'
+	};
+	return icons[statName] || '📊';
 };
 
 const getStatLabel = (statName) => {
-  const labels = {
-    happiness: 'Bonheur',
-    economy: 'Argent',
-    energy: 'Énergie'
-  };
-  return labels[statName] || statName;
+	const labels = {
+		happiness: 'Bonheur',
+		economy: 'Argent',
+		energy: 'Énergie'
+	};
+	return labels[statName] || statName;
 };
 
 const getStatColor = (value) => {
-  if (value > 80) return '#4CAF50';
-  if (value > 60) return '#FF9800';
-  if (value > 40) return '#FFC107';
-  if (value > 20) return '#FF5722';
-  return '#F44336';
+	if (value > 80) return '#4CAF50';
+	if (value > 60) return '#FF9800';
+	if (value > 40) return '#FFC107';
+	if (value > 20) return '#FF5722';
+	return '#F44336';
 };
 
 const QuickStats = ({ gameState, previewStats, dragDirection }) => {
-  const stats = ['happiness', 'economy', 'energy'];
+	const stats = ['happiness', 'economy', 'energy'];
 
-  const getPreviewValue = (stat) => {
-    if (!previewStats || !previewStats[stat]) return null;
-    return previewStats[stat];
-  };
+	const getPreviewValue = (stat) => {
+		if (!previewStats || !previewStats[stat]) return null;
+		return previewStats[stat];
+	};
 
-  return (
-    <QuickStatsContainer>
-      {stats.map(stat => {
-        const preview = getPreviewValue(stat);
-        const currentValue = gameState[stat];
-        const newValue = preview ? preview.new : currentValue;
-        const change = preview ? preview.change : 0;
-        
-        return (
-          <motion.div
-            key={stat}
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ 
-              scale: 1, 
-              opacity: 1,
-              backgroundColor: preview ? 'rgba(255, 255, 255, 0.98)' : 'rgba(255, 255, 255, 0.95)'
-            }}
-            transition={{ duration: 0.3 }}
-            whileHover={{ scale: 1.05 }}
-          >
-            <StatItem>
-              <StatIcon>{getStatIcon(stat)}</StatIcon>
-              <StatInfo>
-                <StatLabel>{getStatLabel(stat)}</StatLabel>
-                <StatValue 
-                  style={{ 
-                    color: getStatColor(newValue),
-                    textShadow: preview ? '0 0 5px rgba(0,0,0,0.3)' : 'none'
-                  }}
-                >
-                  {Math.round(newValue)}%
-                </StatValue>
-                {preview && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    style={{
-                      fontSize: '0.6rem',
-                      color: change > 0 ? '#4CAF50' : change < 0 ? '#F44336' : '#666',
-                      fontWeight: 'bold'
-                    }}
-                  >
-                    {change > 0 ? '+' : ''}{change}
-                  </motion.div>
-                )}
-              </StatInfo>
-            </StatItem>
-          </motion.div>
-        );
-      })}
-    </QuickStatsContainer>
-  );
+	return (
+		<QuickStatsContainer>
+			{stats.map(stat => {
+				const preview = getPreviewValue(stat);
+				const currentValue = gameState[stat];
+				const newValue = preview ? preview.new : currentValue;
+				const change = preview ? preview.change : 0;
+
+				return (
+					<motion.div
+						key={stat}
+						initial={{ scale: 0.8, opacity: 0 }}
+						animate={{
+							scale: preview ? 1.05 : 1,
+							opacity: 1
+						}}
+						transition={{ duration: 0.3 }}
+						whileHover={{ scale: 1.05 }}
+					>
+						<StatItem>
+							<StatIcon>{getStatIcon(stat)}</StatIcon>
+							<StatInfo>
+								<StatLabel>{getStatLabel(stat)}</StatLabel>
+								<StatValue
+									style={{
+										color: getStatColor(newValue),
+										textShadow: preview ? '0 0 5px rgba(0,0,0,0.3)' : 'none'
+									}}
+								>
+									{Math.round(newValue)}%
+								</StatValue>
+								{preview && (
+									<motion.div
+										initial={{ opacity: 0, y: -5 }}
+										animate={{ opacity: 1, y: 0 }}
+										style={{
+											fontSize: '1rem',
+											fontWeight: '900',
+											color: change > 0 ? '#2e7d32' : '#c62828',
+											textShadow: '1px 1px 2px rgba(0,0,0,0.2)'
+										}}
+									>
+										{change > 0 ? '+' : ''}{change}
+									</motion.div>
+								)}
+							</StatInfo>
+						</StatItem>
+					</motion.div>
+				);
+			})}
+		</QuickStatsContainer>
+	);
 };
 
 export default QuickStats; 

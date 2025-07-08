@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -68,6 +68,10 @@ const ChoiceButton = styled.button`
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
     }
+    &.selected {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
+    }
   }
   
   &.right {
@@ -78,6 +82,10 @@ const ChoiceButton = styled.button`
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
     }
+    &.selected {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(78, 205, 196, 0.5);
+    }
   }
 `;
 
@@ -85,19 +93,23 @@ const SwipeIndicator = styled.div`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  opacity: 0.8;
+  opacity: 0.9;
   pointer-events: none;
   z-index: 10;
-  
+  padding: 10px 15px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+
   &.left {
-    left: 20px;
+    left: 10px;
     color: #ff6b6b;
   }
   
   &.right {
-    right: 20px;
+    right: 10px;
     color: #4ecdc4;
   }
 `;
@@ -109,84 +121,60 @@ const ActorName = styled.div`
   font-weight: normal;
 `;
 
+
 const getActorName = (actorIndex) => {
-  const actors = [
-    "Ministre de l'Industrie",
-    "Ministre de l'Environnement", 
-    "Porte parole du Peuple"
-  ];
-  return actors[actorIndex] || "Acteur inconnu";
+	const actors = [
+		"Ministre de l'Industrie",
+		"Ministre de l'Environnement",
+		"Porte parole du Peuple"
+	];
+	return actors[actorIndex] || "Acteur inconnu";
 };
 
-const GameCard = ({ card, onChoice, gameState }) => {
-  const [dragDirection, setDragDirection] = useState(null);
+const GameCard = ({ card, onChoice, gameState, previewStats, dragDirection }) => {
+	const economicStats = ['happiness', 'economy', 'energy'];
 
-  const handleDragEnd = (event, info) => {
-    const threshold = 100;
-    const { offset } = info;
-    
-    if (Math.abs(offset.x) > threshold) {
-      const direction = offset.x > 0 ? 'right' : 'left';
-      onChoice(direction);
-    }
-    setDragDirection(null);
-  };
+	return (
+		<Card
+			initial={{ scale: 0.8, opacity: 0 }}
+			animate={{ scale: 1, opacity: 1 }}
+			exit={{ scale: 0.8, opacity: 0 }}
+			transition={{ duration: 0.3 }}
+			whileHover={{ scale: 1.02 }}
+		>
+			<CardHeader>
+				{card.title || 'Décision'}
+				{card.actor !== undefined && <ActorName>{getActorName(card.actor)}</ActorName>}
+			</CardHeader>
 
-  const handleDrag = (event, info) => {
-    const { offset } = info;
-    if (offset.x > 50) {
-      setDragDirection('right');
-    } else if (offset.x < -50) {
-      setDragDirection('left');
-    } else {
-      setDragDirection(null);
-    }
-  };
 
-  return (
-    <Card
-      drag="x"
-      dragConstraints={{ left: 0, right: 0 }}
-      onDragEnd={handleDragEnd}
-      onDrag={handleDrag}
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0.8, opacity: 0 }}
-      transition={{ duration: 0.3 }}
-      whileHover={{ scale: 1.02 }}
-    >
-      <CardHeader>
-        {card.title || 'Décision'}
-        {card.actor !== undefined && <ActorName>{getActorName(card.actor)}</ActorName>}
-      </CardHeader>
-      
-      <CardContent>
-        <CardText>{card.description}</CardText>
-        
-        <ChoiceContainer>
-          <ChoiceButton 
-            className="left"
-            onClick={() => onChoice('left')}
-          >
-            {card.choices.left.text}
-          </ChoiceButton>
-          
-          <ChoiceButton 
-            className="right"
-            onClick={() => onChoice('right')}
-          >
-            {card.choices.right.text}
-          </ChoiceButton>
-        </ChoiceContainer>
-      </CardContent>
-      
-      {dragDirection && (
-        <SwipeIndicator className={dragDirection}>
-          {dragDirection === 'left' ? '←' : '→'}
-        </SwipeIndicator>
-      )}
-    </Card>
-  );
+			<CardContent>
+				<CardText>{card.description}</CardText>
+
+				<ChoiceContainer>
+					<ChoiceButton
+						className={`left ${dragDirection === 'left' ? 'selected' : ''}`}
+						onClick={() => onChoice('left')}
+					>
+						{card.choices.left.text}
+					</ChoiceButton>
+
+					<ChoiceButton
+						className={`right ${dragDirection === 'right' ? 'selected' : ''}`}
+						onClick={() => onChoice('right')}
+					>
+						{card.choices.right.text}
+					</ChoiceButton>
+				</ChoiceContainer>
+			</CardContent>
+
+			{dragDirection && (
+				<SwipeIndicator className={dragDirection}>
+					{dragDirection === 'left' ? '←' : '→'}
+				</SwipeIndicator>
+			)}
+		</Card>
+	);
 };
 
 export default GameCard; 

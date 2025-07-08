@@ -27,7 +27,16 @@ const ArrowIndicator = styled.div`
     filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.9));
   }
   polygon {
-    fill: ${props => props.direction === 'up' ? '#FF5722' : '#4CAF50'};
+    fill: ${props => {
+		const goodColor = '#4CAF50';
+		const badColor = '#FF5722';
+		if (props.isPositiveGood) {
+			// For stats where an increase is good (e.g., life_spaces)
+			return props.direction === 'up' ? goodColor : badColor;
+		}
+		// For stats where a decrease is good (e.g., temperature)
+		return props.direction === 'down' ? goodColor : badColor;
+	}};
   }
 `;
 
@@ -102,175 +111,175 @@ const ImageContainer = styled(motion.div)`
 `;
 
 const getLifeSpacesImage = (level) => {
-  if (level >= 75) return require('../ressources/lifespace/lifespace4.png');
-  if (level >= 50) return require('../ressources/lifespace/lifespace3.png');
-  if (level >= 25) return require('../ressources/lifespace/lifespace2.png');
-  return require('../ressources/lifespace/lifespace1.png');
+	if (level >= 75) return require('../ressources/lifespace/lifespace1.png');
+	if (level >= 50) return require('../ressources/lifespace/lifespace2.png');
+	if (level >= 25) return require('../ressources/lifespace/lifespace3.png');
+	return require('../ressources/lifespace/lifespace4.png');
 };
 
 const getTemperatureImage = (level) => {
-  if (level >= 75) return require('../ressources/temperature/temperature4.png');
-  if (level >= 50) return require('../ressources/temperature/temperature3.png');
-  if (level >= 25) return require('../ressources/temperature/temperature2.png');
-  return require('../ressources/temperature/temperature1.png');
+	if (level >= 75) return require('../ressources/temperature/temperature4.png');
+	if (level >= 50) return require('../ressources/temperature/temperature3.png');
+	if (level >= 25) return require('../ressources/temperature/temperature2.png');
+	return require('../ressources/temperature/temperature1.png');
 };
 
 const getSeaLevelImage = (level) => {
-  if (level >= 75) return require('../ressources/sealevel/sealevel4.png');
-  if (level >= 50) return require('../ressources/sealevel/sealevel3.png');
-  if (level >= 25) return require('../ressources/sealevel/sealevel2.png');
-  return require('../ressources/sealevel/sealevel1.png');
+	if (level >= 75) return require('../ressources/sealevel/sealevel4.png');
+	if (level >= 50) return require('../ressources/sealevel/sealevel3.png');
+	if (level >= 25) return require('../ressources/sealevel/sealevel2.png');
+	return require('../ressources/sealevel/sealevel1.png');
 };
 
 const getCO2Image = (level) => {
-  if (level >= 75) return require('../ressources/pollution/pollution4.png');
-  if (level >= 50) return require('../ressources/pollution/pollution3.png');
-  if (level >= 25) return require('../ressources/pollution/pollution2.png');
-  return require('../ressources/pollution/pollution1.png');
+	if (level >= 75) return require('../ressources/pollution/pollution4.png');
+	if (level >= 50) return require('../ressources/pollution/pollution3.png');
+	if (level >= 25) return require('../ressources/pollution/pollution2.png');
+	return require('../ressources/pollution/pollution1.png');
 };
 
 const getArrowSize = (change) => {
-  const absChange = Math.abs(change);
-  if (absChange >= 15) return 'large';
-  if (absChange >= 8) return 'large';
-  return 'large';
+	const absChange = Math.abs(change);
+	if (absChange >= 15) return 'large';
+	if (absChange >= 8) return 'large';
+	return 'large';
 };
 
 const getArrowDirection = (change) => {
-  if (change > 0) return 'up';
-  if (change < 0) return 'down';
-  return null;
+	if (change > 0) return 'up';
+	if (change < 0) return 'down';
+	return null;
 };
 
 const getArrowSymbol = (direction) => {
-  if (direction === 'up' || direction === 'down') {
-    return (
-      <svg width="100" height="40" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="0,10 70,10 70,0 100,20 70,40 70,30 0,30" fill="#333"></polygon>
-      </svg>
-    );
-  }
-  return null;
+	if (direction === 'up' || direction === 'down') {
+		return (
+			<svg width="100" height="40" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+				<polygon points="0,10 70,10 70,0 100,20 70,40 70,30 0,30" fill="#333"></polygon>
+			</svg>
+		);
+	}
+	return null;
 };
 
 const BackgroundScene = ({ gameState, previewStats }) => {
-  const getPreviewValue = (stat) => {
-    if (!previewStats || !previewStats[stat]) return null;
-    return previewStats[stat];
-  };
+	const getPreviewValue = (stat) => {
+		if (!previewStats || !previewStats[stat]) return null;
+		return previewStats[stat];
+	};
 
-  return (
-    <BackgroundContainer>
-      <Column>
-        <ColumnTitle>Espaces de Vie</ColumnTitle>
-        <ImageContainer
-          animate={{ 
-            opacity: 1
-          }}
-          transition={{ duration: 0.5 }}
-        >
-          <img src={getLifeSpacesImage(gameState.life_spaces)} alt="Espaces de vie" />
-          {(() => {
-            const preview = getPreviewValue('life_spaces'); // ou temperature, sea_level, co2 selon la colonne
-            if (preview) {
-              const arrowDirection = getArrowDirection(preview.change);
-              if (!arrowDirection) return null;
-              // up = rouge, down = vert, orientation adaptée
-              return (
-                <ArrowContainer>
-                  <ArrowIndicator direction={arrowDirection}>
-                    {getArrowSymbol(arrowDirection)}
-                  </ArrowIndicator>
-                </ArrowContainer>
-              );
-            }
-            return null;
-          })()}
-        </ImageContainer>
-      </Column>
-      
-      <Column>
-        <ColumnTitle>Température</ColumnTitle>
-        <ImageContainer
-          animate={{ 
-            opacity: 1
-          }}
-          transition={{ duration: 0.5 }}
-        >
-          <img src={getTemperatureImage(gameState.temperature)} alt="Température" />
-          {(() => {
-            const preview = getPreviewValue('temperature');
-            if (preview) {
-              const arrowDirection = getArrowDirection(preview.change);
-              if (!arrowDirection) return null;
-              return (
-                <ArrowContainer>
-                  <ArrowIndicator direction={arrowDirection}>
-                    {getArrowSymbol(arrowDirection)}
-                  </ArrowIndicator>
-                </ArrowContainer>
-              );
-            }
-            return null;
-          })()}
-        </ImageContainer>
-      </Column>
-      
-      <Column>
-        <ColumnTitle>Niveau de la Mer</ColumnTitle>
-        <ImageContainer
-          animate={{ 
-            opacity: 1
-          }}
-          transition={{ duration: 0.5 }}
-        >
-          <img src={getSeaLevelImage(gameState.sea_level)} alt="Niveau de la mer" />
-          {(() => {
-            const preview = getPreviewValue('sea_level');
-            if (preview) {
-              const arrowDirection = getArrowDirection(preview.change);
-              if (!arrowDirection) return null;
-              return (
-                <ArrowContainer>
-                  <ArrowIndicator direction={arrowDirection}>
-                    {getArrowSymbol(arrowDirection)}
-                  </ArrowIndicator>
-                </ArrowContainer>
-              );
-            }
-            return null;
-          })()}
-        </ImageContainer>
-      </Column>
-      
-      <Column>
-        <ColumnTitle>CO2/Pollution</ColumnTitle>
-        <ImageContainer
-          animate={{ 
-            opacity: 1
-          }}
-          transition={{ duration: 0.5 }}
-        >
-          <img src={getCO2Image(gameState.co2)} alt="CO2/Pollution" />
-          {(() => {
-            const preview = getPreviewValue('co2');
-            if (preview) {
-              const arrowDirection = getArrowDirection(preview.change);
-              if (!arrowDirection) return null;
-              return (
-                <ArrowContainer>
-                  <ArrowIndicator direction={arrowDirection}>
-                    {getArrowSymbol(arrowDirection)}
-                  </ArrowIndicator>
-                </ArrowContainer>
-              );
-            }
-            return null;
-          })()}
-        </ImageContainer>
-      </Column>
-    </BackgroundContainer>
-  );
+	return (
+		<BackgroundContainer>
+			<Column>
+				<ColumnTitle>Espaces de Vie</ColumnTitle>
+				<ImageContainer
+					animate={{
+						opacity: 1
+					}}
+					transition={{ duration: 0.5 }}
+				>
+					<img src={getLifeSpacesImage(gameState.life_spaces)} alt="Espaces de vie" />
+					{(() => {
+						const preview = getPreviewValue('life_spaces'); // ou temperature, sea_level, co2 selon la colonne
+						if (preview) {
+							const arrowDirection = getArrowDirection(preview.change);
+							if (!arrowDirection) return null;
+							// up = rouge, down = vert, orientation adaptée
+							return (
+								<ArrowContainer>
+									<ArrowIndicator direction={arrowDirection} isPositiveGood={true}>
+										{getArrowSymbol(arrowDirection)}
+									</ArrowIndicator>
+								</ArrowContainer>
+							);
+						}
+						return null;
+					})()}
+				</ImageContainer>
+			</Column>
+
+			<Column>
+				<ColumnTitle>Température</ColumnTitle>
+				<ImageContainer
+					animate={{
+						opacity: 1
+					}}
+					transition={{ duration: 0.5 }}
+				>
+					<img src={getTemperatureImage(gameState.temperature)} alt="Température" />
+					{(() => {
+						const preview = getPreviewValue('temperature');
+						if (preview) {
+							const arrowDirection = getArrowDirection(preview.change);
+							if (!arrowDirection) return null;
+							return (
+								<ArrowContainer>
+									<ArrowIndicator direction={arrowDirection} isPositiveGood={true}>
+										{getArrowSymbol(arrowDirection)}
+									</ArrowIndicator>
+								</ArrowContainer>
+							);
+						}
+						return null;
+					})()}
+				</ImageContainer>
+			</Column>
+
+			<Column>
+				<ColumnTitle>Niveau de la Mer</ColumnTitle>
+				<ImageContainer
+					animate={{
+						opacity: 1
+					}}
+					transition={{ duration: 0.5 }}
+				>
+					<img src={getSeaLevelImage(gameState.sea_level)} alt="Niveau de la mer" />
+					{(() => {
+						const preview = getPreviewValue('sea_level');
+						if (preview) {
+							const arrowDirection = getArrowDirection(preview.change);
+							if (!arrowDirection) return null;
+							return (
+								<ArrowContainer>
+									<ArrowIndicator direction={arrowDirection}>
+										{getArrowSymbol(arrowDirection)}
+									</ArrowIndicator>
+								</ArrowContainer>
+							);
+						}
+						return null;
+					})()}
+				</ImageContainer>
+			</Column>
+
+			<Column>
+				<ColumnTitle>CO2/Pollution</ColumnTitle>
+				<ImageContainer
+					animate={{
+						opacity: 1
+					}}
+					transition={{ duration: 0.5 }}
+				>
+					<img src={getCO2Image(gameState.co2)} alt="CO2/Pollution" />
+					{(() => {
+						const preview = getPreviewValue('co2');
+						if (preview) {
+							const arrowDirection = getArrowDirection(preview.change);
+							if (!arrowDirection) return null;
+							return (
+								<ArrowContainer>
+									<ArrowIndicator direction={arrowDirection}>
+										{getArrowSymbol(arrowDirection)}
+									</ArrowIndicator>
+								</ArrowContainer>
+							);
+						}
+						return null;
+					})()}
+				</ImageContainer>
+			</Column>
+		</BackgroundContainer>
+	);
 };
 
 export default BackgroundScene; 
