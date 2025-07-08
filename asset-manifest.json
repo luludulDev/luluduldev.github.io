@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.46f9ef49.css",
+    "main.js": "/static/js/main.c249724c.js",
+    "static/js/453.f8f8494b.chunk.js": "/static/js/453.f8f8494b.chunk.js",
+    "static/media/temperature4.png": "/static/media/temperature4.74d5d1700a47726ed2cf.png",
+    "static/media/temperature2.png": "/static/media/temperature2.b7cad2c89e224239eebc.png",
+    "static/media/pollution1.png": "/static/media/pollution1.bf4d2604eaeb6bc8dfff.png",
+    "static/media/pollution4.png": "/static/media/pollution4.bd28ff4c45e131e204b3.png",
+    "static/media/temperature1.png": "/static/media/temperature1.01f51509440190193662.png",
+    "static/media/pollution3.png": "/static/media/pollution3.c651cfce5e65963ade3f.png",
+    "static/media/sealevel4.png": "/static/media/sealevel4.6c62f34bfb3c76ff7e0b.png",
+    "static/media/sealevel2.png": "/static/media/sealevel2.2bdbf696411fa6937c7e.png",
+    "static/media/pollution2.png": "/static/media/pollution2.50cdc509bf05b50d7eea.png",
+    "static/media/sealevel3.png": "/static/media/sealevel3.52f1d8ec8922642af416.png",
+    "static/media/sealevel1.png": "/static/media/sealevel1.a0978a8906ee14b8ce9d.png",
+    "static/media/temperature3.png": "/static/media/temperature3.d20032b60817054df97f.png",
+    "static/media/lifespace1.png": "/static/media/lifespace1.60ec6e2e38ff9dc4abb2.png",
+    "static/media/lifespace2.png": "/static/media/lifespace2.86a1bfe50767106484a2.png",
+    "static/media/lifespace3.png": "/static/media/lifespace3.eb4578ddd9871bf3aac6.png",
+    "static/media/lifespace4.png": "/static/media/lifespace4.84ba64ee8c94a0ed3780.png",
+    "index.html": "/index.html",
+    "main.46f9ef49.css.map": "/static/css/main.46f9ef49.css.map",
+    "main.c249724c.js.map": "/static/js/main.c249724c.js.map",
+    "453.f8f8494b.chunk.js.map": "/static/js/453.f8f8494b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.46f9ef49.css",
+    "static/js/main.c249724c.js"
+  ]
+}
